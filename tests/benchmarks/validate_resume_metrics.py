@@ -17,7 +17,6 @@ print()
 print("✅ Memory Reduction: VALIDATED")
 print("   Claimed: 70%")
 print("   Achieved: 97% (exceeds claim)")
-print("   Tested on: Llama 7B, 13B configurations")
 print()
 
 # Speedup Validation
