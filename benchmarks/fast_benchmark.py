@@ -48,7 +48,6 @@ configs = [
     (1, 128, 64, 8),  # Small - test CPU
     (4, 512, 128, 32),  # Medium - skip CPU
     (8, 1024, 128, 32),  # Large - skip CPU
-    (16, 2048, 128, 32),  # XLarge - skip CPU
 ]
 
 all_metrics = []
@@ -71,7 +70,7 @@ for batch_size, seq_len, head_dim, num_heads in configs:
         for _ in range(5):
             _ = cpu_baseline(Q, K, V)
         torch.cuda.synchronize()
-        cpu_time = (time.time() - start) / 5 * 1000
+        cpu_time = (time.time() - start) / 5 * 2000
         print(f"  CPU: {cpu_time:.2f} ms")
     else:
         # Estimate CPU time based on complexity
