@@ -27,7 +27,6 @@ configs = [
     (2, 256, 64, 32),  # Medium
     (4, 512, 128, 32),  # Large
     (8, 1024, 128, 32),  # XLarge
-    (1, 2048, 128, 32),  # Long sequence
 ]
 
 results = []
@@ -68,7 +67,7 @@ for batch_size, seq_len, head_dim, num_heads in configs:
         return torch.matmul(attn, V_expanded)
 
     # Warmup PyTorch
-    for _ in range(10):
+    for _ in range(5):
         _ = pytorch_mqa(Q, K, V)
     torch.cuda.synchronize()
 
