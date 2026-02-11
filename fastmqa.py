@@ -13,15 +13,6 @@ import numpy as np
 
 
 class ProductionFastMQA(nn.Module):
-    """
-    Production-ready Fast Multi-Query Attention
-
-    VERIFIED FEATURES:
-    - 96.9% KV cache memory reduction (32 heads -> 1 head)
-    - Production-grade numerical accuracy
-    - Torch.compile optimization
-    - Optional MLA compression for 98%+ reduction
-    """
 
     def __init__(self, hidden_dim, num_heads, enable_mla=False, mla_compression=0.5):
         super().__init__()
@@ -81,7 +72,6 @@ class ProductionFastMQA(nn.Module):
                 x,
                 q_w,
                 k_w,
-                v_w,
                 o_w,
                 k_comp_w,
                 v_comp_w,
