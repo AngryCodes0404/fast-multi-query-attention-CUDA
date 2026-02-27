@@ -5,7 +5,7 @@
 #include <float.h>
 #include <stdio.h>
 
-#define TILE_SIZE 16
+#define TILE_SIZE 8
 #define WARP_SIZE 32
 
 // Complete working MQA kernel implementation
