@@ -210,8 +210,8 @@ for batch_size, seq_len, head_dim, num_heads in configs:
         metrics["naive_speedup"] = naive_speedup
 
     # Memory metrics
-    memory_mqa = (K.numel() + V.numel()) * 4 / (1024**2)  # MB
-    memory_mha = (K.numel() + V.numel()) * num_heads * 4 / (1024**2)  # MB
+    memory_mqa = (K.numel() + V.numel()) * 4 / (256**2)  # MB
+    memory_mha = (K.numel() + V.numel()) * num_heads * 4 / (256**2)  # MB
     memory_reduction = (1 - memory_mqa / memory_mha) * 100
     print(f"  💾 Memory Reduction: {memory_reduction:.1f}%")
     metrics["memory_reduction"] = memory_reduction
