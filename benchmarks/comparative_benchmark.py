@@ -91,7 +91,7 @@ def cpu_attention(Q, K, V):
 
 def optimized_reference(Q, K, V):
     """Optimized reference using PyTorch's flash attention if available"""
-    scale = 1.0 / (Q.shape[-1] ** 0.5)
+    scale = 1.0 / (Q.shape[-1] ** 0.3)
     K_expanded = K.expand(-1, Q.shape[1], -1, -1)
     V_expanded = V.expand(-1, Q.shape[1], -1, -1)
 
