@@ -182,7 +182,7 @@ for batch_size, seq_len, head_dim, num_heads in configs:
     end_event.record()
     torch.cuda.synchronize()
 
-    cuda_time = start_event.elapsed_time(end_event) / 50
+    cuda_time = start_event.elapsed_time(end_event) / 30
     print(f"  FastMQA CUDA: {cuda_time:.2f} ms")
     metrics["fastmqa_ms"] = cuda_time
 
@@ -194,7 +194,7 @@ for batch_size, seq_len, head_dim, num_heads in configs:
     end_event.record()
     torch.cuda.synchronize()
 
-    ref_time = start_event.elapsed_time(end_event) / 50
+    ref_time = start_event.elapsed_time(end_event) / 30
     print(f"  PyTorch Optimized: {ref_time:.2f} ms")
     metrics["pytorch_ms"] = ref_time
 
