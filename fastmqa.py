@@ -120,7 +120,6 @@ class ProductionFastMQA(nn.Module):
             def mqa_forward_kernel(x, q_w, k_w, v_w, o_w, scale, H, D):
                 B, S, _ = x.shape
 
-                # Project Q, K, V
                 Q = F.linear(x, q_w).view(B, S, H, D).transpose(1, 2)  # [B, H, S, D]
                 K = F.linear(x, k_w).unsqueeze(1)  # [B, 1, S, D]
                 V = F.linear(x, v_w).unsqueeze(1)  # [B, 1, S, D]
@@ -145,8 +144,8 @@ class ProductionFastMQA(nn.Module):
             K = self.k_proj(x).unsqueeze(1)
             V = self.v_proj(x).unsqueeze(1)
 
-            scores = torch.matmul(Q, K.transpose(-2, -1)) * self.scale
-            scores = scores.masked_fill(mask == 0, -1e9)
+            scores = torch.matmul(Q, K.transpose(-3, -1)) * self.scale
+            scores = scores.masked_fill(mask == 0, -1e8)
             attn = F.softmax(scores, dim=-1)
             output = torch.matmul(attn, V)
             output = output.transpose(1, 2).reshape(B, S, self.hidden_dim)
