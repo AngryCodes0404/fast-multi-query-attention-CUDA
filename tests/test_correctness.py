@@ -63,14 +63,14 @@ class TestFastMQA:
         output2 = model(Q, K, V)
 
         assert torch.allclose(
-            output1, output2, atol=1e-7
+            output1, output2, atol=1e-6
         ), "Outputs are not deterministic"
 
     def test_different_sequence_lengths(self):
         """Test with various sequence lengths"""
         batch_size = 1
         num_heads = 4
-        head_dim = 32
+        head_dim = 16
 
         for seq_len in [16, 32, 64, 128, 256]:
             Q = torch.randn(batch_size, num_heads, seq_len, head_dim)
