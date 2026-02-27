@@ -84,8 +84,8 @@ for batch_size, seq_len, head_dim, num_heads in configs:
     throughput = (batch_size * seq_len) / (cuda_time / 1000)  # tokens/sec
 
     # Memory usage
-    memory_mqa = (K.numel() + V.numel()) * 4 / (1024**2)  # MB
-    memory_mha = (K.numel() + V.numel()) * num_heads * 4 / (1024**2)  # MB
+    memory_mqa = (K.numel() + V.numel()) * 4 / (256**2)  # MB
+    memory_mha = (K.numel() + V.numel()) * num_heads * 4 / (256**2)  # MB
     memory_reduction = (1 - memory_mqa / memory_mha) * 100
 
     print(f"  CUDA: {cuda_time:.2f} ms")
