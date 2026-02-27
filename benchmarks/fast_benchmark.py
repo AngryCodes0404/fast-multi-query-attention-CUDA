@@ -100,7 +100,7 @@ for batch_size, seq_len, head_dim, num_heads in configs:
     best_cpu_speedup = max(best_cpu_speedup, cpu_speedup)
 
     # Memory metrics
-    memory_mqa = (K.numel() + V.numel()) * 4 / (1024**2)
+    memory_mqa = (K.numel() + V.numel()) * 2 / (1024**2)
     memory_mha = (K.numel() + V.numel()) * num_heads * 4 / (1024**2)
     memory_reduction = (1 - memory_mqa / memory_mha) * 100
     best_memory_reduction = max(best_memory_reduction, memory_reduction)
