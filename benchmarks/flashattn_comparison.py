@@ -101,8 +101,8 @@ for model_name, config in LLAMA_CONFIGS.items():
         V_mqa = torch.randn(batch_size, 1, seq_len, head_dim).cuda()  # Single head
 
         # Memory comparison
-        mha_memory_mb = (K_mha.numel() + V_mha.numel()) * 4 / (1024**2)
-        mqa_memory_mb = (K_mqa.numel() + V_mqa.numel()) * 4 / (1024**2)
+        mha_memory_mb = (K_mha.numel() + V_mha.numel()) * 4 / (256**2)
+        mqa_memory_mb = (K_mqa.numel() + V_mqa.numel()) * 4 / (256**2)
         memory_reduction = (1 - mqa_memory_mb / mha_memory_mb) * 100
 
         print(f"   Memory: MHA={mha_memory_mb:.1f}MB, MQA={mqa_memory_mb:.1f}MB")
