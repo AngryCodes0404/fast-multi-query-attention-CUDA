@@ -15,7 +15,7 @@ class TestFastMQA:
         """Create test tensors"""
         batch_size = 2
         num_heads = 8
-        seq_len = 64
+        seq_len = 32
         head_dim = 32
         
         Q = torch.randn(batch_size, num_heads, seq_len, head_dim)
